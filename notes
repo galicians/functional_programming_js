@@ -1,0 +1,83 @@
+ Function values are actually Objects (inheriting from Function.prototype)
+
+ functional-javascript-workshop
+
+ combaining filter and map:
+ array.filter(function(num) { return num < 5 }).map(function(num) { return num * 2 })
+
+ function isBig(element, index, arr) { 
+... console.log(element)
+... console.log(index)
+... console.log(arr)
+... return element >= 5}
+
+function randomInt(min, max) {
+... return Math.floor((Math.random() * (max - min + 1)) + min)}
+
+ callbacks, events, streams and modules
+
+ some: some executes the callback function once for each element present in the array until it finds one where callback returns a true value. If such an element is found, some immediately returns true. Otherwise, some returns false.
+
+ every: The every method executes the provided callback function once for each element present in the array until it finds one where callback returns a falsy value (a value that becomes false when converted to a Boolean). If such an element is found, the every method immediately returns false. 
+
+reduce: executes the callback function once for each element present in the array, excluding holes in the array, receiving four arguments: the initial value (or value from the previous callback call), the value of the current element, the current index, and the array over which iteration is occurring.
+
+
+   iterate through tests and chec
+
+
+ RawBlameHistory   
+module.exports = function checkUsersValid(goodUsers) {
+  return function(submittedUsers) {
+    return submittedUsers.every(function(submittedUser) {
+      return goodUsers.some(function(goodUser) {
+        return goodUser.id === submittedUser.id
+      })
+    })
+  }
+}
+
+
+Duck was created with the {} syntax, and as such it inherits from Object.prototype:
+
+    var object = {quack: true}
+    
+    Object.getPrototypeOf(object) === Object.prototype // => true
+    object.hasOwnProperty('quack')                     // => true
+
+       // assign alien as the prototype of zippy
+    zippy.__proto__ = alien
+    
+    // zippy is now linked to alien
+    // it 'inherits' the properties of alien
+
+
+
+You can add properties to the prototype of an object at any time, the prototype chain lookup will find the new property as expected.
+
+      * Objects delegate property lookups to their prototype.
+  * A prototype can be shared between objects.
+zippy.__proto__ = alien
+
+
+function findPlane(planeInAirport, index, allPlanesInAirport) {
+... if ( plane === planeInAirport) {
+..... allPlanesInAirport.splice(index, 1)
+..... return true}
+... }
+
+airport.filter(findPlane)[0]
+
+
+But keep in mind that the implicit 'this' is only assigned to a new object when using 'new'. If you forget 'new' keyword then 'this' will be the global object. Of course forgetting new is a cause of multiple bugs, so don't forget new.
+
+
+That is mostly everything there is to know about the JavaScript object model. Understanding how __proto__ and function.prototype are related will give you countless hours of joy and satisfaction, or maybe not.
+
+
+
+
+
+
+
+
